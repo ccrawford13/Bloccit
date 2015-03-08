@@ -19,7 +19,7 @@ posts = Post.all
 end
 
 Advertisement.create!(
-  title: 'New Advertisement',
+  title: 'Support Bloccit',
   copy: "New Copy",
   price: 500
   )
