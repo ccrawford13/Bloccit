@@ -1,0 +1,4 @@
+<h1>All Ads </h1>
+<% @advertisements.each do |advertisement| %>
+  <p> <%= link_to advertisement.title, show_path %> </p>
+<% end %>
