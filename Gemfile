@@ -21,6 +21,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'pry-rails'
 gem 'faker'
+gem 'devise'
 
 group :production do
   gem 'pg'
