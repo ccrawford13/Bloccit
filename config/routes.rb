@@ -1,10 +1,14 @@
 Rails.application.routes.draw do
-  
+
   devise_for :users
+    
+    resources :topics do
+      resources :posts, except: [:index]
+    end 
+    
+    resources :advertisements
     get 'about' => 'welcome#about'
     get 'contact' => 'welcome#contact'
-    resources :advertisements
-    resources :posts
   root to: 'welcome#index'
 end
  
