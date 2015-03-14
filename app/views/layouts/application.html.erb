@@ -11,10 +11,8 @@
   <div class="container">
     <ul class="nav nav-tabs">
     <li> <%=link_to "Bloccit", root_path %> </li>
-      <!-- Add Authorization to Nav Bar to Show 'Posts' link if user is logged in -->
-      <% if policy(Post.new).create? %>
-        <li> <%= link_to "Posts", posts_path %> </li>
-      <% end %>
+      <!-- Add Authorization to Nav Bar to Show 'Posts' link if user is logged in --> 
+    <li> <%= link_to "Posts", posts_path %> </li>
       <div class="pull-right user-info">
         <% if current_user %>
           Hello <%= current_user.email %>! <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
