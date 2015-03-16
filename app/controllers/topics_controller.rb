@@ -42,13 +42,15 @@ class TopicsController < ApplicationController
     end
   end
 
+  def find_topic_params
+    params[:id]
+  end
+
   private
 
   def topic_params
     params.require(:topic).permit(:name, :description, :public)
   end
 
-  def find_topic_params
-    params[:topic_id]
-  end
+  
 end
