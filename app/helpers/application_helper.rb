@@ -8,4 +8,11 @@ module ApplicationHelper
     end
   end
 
+  def markdown_to_html(markdown)
+    renderer = Redcarpet::Render::HTML.new(render_options = {safe_links_only: true})
+    extensions = { fenced_code_blocks: true, quote: true }
+    redcarpet = Redcarpet::Markdown.new(renderer, extensions)
+    (redcarpet.render markdown).html_safe
+  end
+
 end

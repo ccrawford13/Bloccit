@@ -23,6 +23,7 @@ gem 'pry-rails'
 gem 'faker'
 gem 'devise'
 gem 'pundit'
+gem 'redcarpet'
 
 group :production do
   gem 'pg'
