@@ -1,8 +1,8 @@
 class PostsController < ApplicationController
 
   def show
-    @topic = Topic.find(find_topic_params)
-    @post = Post.find(params[:id])
+    locals topic: Topic.find(find_topic_params),
+           post:  Post.find(params[:id])
   end
 
   def new
@@ -47,6 +47,10 @@ class PostsController < ApplicationController
   end
 
   private
+
+  def locals(values)
+    render locals: values
+  end 
 
   def post_params
     params.require(:post).permit(:title, :body)
