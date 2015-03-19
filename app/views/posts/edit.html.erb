@@ -8,7 +8,8 @@
       <li> Don't use the letter "A" </li>
       <li> The incessant use of hashtags will get you banned. </li>
     </ul>
-  </div>
+    <p><%= link_to "Markdown Cheatsheet", 'https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet' %> </p> 
+  </div> 
   <div class="col-md-8">
     <%= render :partial => 'form', locals: { :topic => @topic, :post => @post } %> 
   </div>
