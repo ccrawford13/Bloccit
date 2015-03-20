@@ -12,12 +12,10 @@
     <div class="col-md-12"> 
     <%= image_tag(post.image.post_view.url) if post.image? %>
     </div> 
-  <div class="col-md-1">
+  <div class="col-md-8">
     <% if policy(post).edit? %>
       <%= link_to "Edit", edit_topic_post_path(topic, post), class: 'btn btn-success' %>
     <% end %> 
-  </div>
-  <div class="col-md-1">
     <%= link_to "Return to Topic", topic_path(topic, post), class: 'btn btn-primary' %>
-  </div> 
+  </div>
 </div> 
