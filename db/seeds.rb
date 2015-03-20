@@ -24,7 +24,7 @@ topics = Topic.all
 #we create an instance of User which isn't immediately saved to the database
 #The 'save' method then saves this User to the database.
 
-100.times do
+500.times do
   Post.create!(
     user: users.sample,
     topic: topics.sample,

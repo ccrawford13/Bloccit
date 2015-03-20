@@ -12,7 +12,7 @@
         <%= link_to "New Post", new_topic_post_path(@topic), class: 'btn btn-success' %>
       <% end %>
     </div> 
-    <div class="col-md-8">
+    <div class="col-md-12">
     <% @posts.each do |post| %>
       <div class="media">
         <div class="media-body">
@@ -31,11 +31,9 @@
         </div> 
       </div>
     <% end %>
+  </div>  
+</div> 
+<div class="paginate">
     <%= will_paginate @posts %>
-    </div>  
-    <div class="col-md-8">
-      <%= link_to "Return to topics", topics_path, class: 'btn btn-primary' %>
-    </div> 
-  </div> 
-
+</div> 
 
