@@ -13,4 +13,3 @@ Rails.application.routes.draw do
     get 'contact' => 'welcome#contact'
   root to: 'welcome#index'
 end
- 

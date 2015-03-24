@@ -13,14 +13,14 @@
       <% end %>
     </div> 
     <div class="col-md-12">
-    <% @posts.each do |post| %>
+    <% post.each do |post| %>
       <div class="media">
         <div class="media-body">
           <h4 class="media-heading">
-            <%= link_to post.markdown_title, [@topic, post] %>
+            <%= link_to post.markdown_title, [@topic, @post] %>
           </h4> 
           <div class="image-container">
-          <%= link_to image_tag(post.image.post_thumbnail.url), [@topic, post] if post.image %>
+          <%= link_to image_tag(post.image.post_thumbnail.url), [@topic, @post] if post.image %>
           </div>
           <small>
             <%= image_tag(post.user.avatar.tiny.url) if post.user.avatar %>
