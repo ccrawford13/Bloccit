@@ -3,12 +3,15 @@ class CommentsController < ApplicationController
   def new
   @post = Post.find(find_post)
   @comment = Comment.new
+  authorize @comment
   end
 
   def create
     @post = Post.find(find_post)
     @comment = current_user.comments.build(comment_params)
-    @comment.post = @post 
+    @comment.post = @post
+    authorize @post
+    authorize @comment
 
     if @comment.save
       flash[:notice] = "Comment was saved"
