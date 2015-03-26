@@ -14,17 +14,15 @@
     </small>
     <h4><%= @post.markdown_body %></h4>
   </div> 
-    <div class="col-md-6"> 
+    <div class="col-md-8"> 
       <%= image_tag(@post.image.post_view.url) if @post.image? %>
     </div>
   <div class="col-md-8">
-    <button class="btn btn-success"> 
-        <%= link_to "New Comment", :controller => :comments, :action => :new, :post_id => @comment %>
-      </button> 
+   <%= render partial: 'comments/form.html.erb', locals: { :topic => @topic, :post => @post, :comment => @comment } %>
   </div>
   <div class="col-md-8">
-    <% @post.comments.each do |comment| %>
-      <%= render comment %>
-    <% end %>
+      <% @post.comments.each do |comment| %>
+        <%= render comment %>
+      <% end %>
   </div> 
 </div> 
