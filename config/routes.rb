@@ -11,9 +11,7 @@ Rails.application.routes.draw do
     resources :posts, only: [] do
       resources :comments, only: [:create, :destroy] 
     end
-  
-    
-    resources :advertisements
+
     get 'about' => 'welcome#about'
     get 'contact' => 'welcome#contact'
   root to: 'welcome#index'
