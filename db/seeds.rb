@@ -19,12 +19,8 @@ users = User.all
 end
 topics = Topic.all
 
-#Create 50 Posts
-#Note: by calling 'User.new' instead of 'create'.
-#we create an instance of User which isn't immediately saved to the database
-#The 'save' method then saves this User to the database.
 
-500.times do
+200.times do
   Post.create!(
     user: users.sample,
     topic: topics.sample,
@@ -38,41 +34,43 @@ posts = Post.all
 200.times do
   Comment.create!(
     post: posts.sample,
-    body: Faker::Lorem.paragraph
+    body: Faker::Lorem.paragraph,
+    user: users.sample
   )
 end
 
-# admin = User.new(
-#   name:       'Admin User',
-#   email:      'admin@example.com',
-#   password:   'helloworld',
-#   role:       'admin'
-# )
-# admin.skip_confirmation!
-# admin.save!
+admin = User.new(
+  name:       'Admin User',
+  email:      'admin@example.com',
+  password:   'helloworld',
+  role:       'admin'
+)
+admin.skip_confirmation!
+admin.save!
 
-# moderator = User.new(
-#   name:       'Moderator User',
-#   email:      'moderator@example.com',
-#   password:   'helloworld',
-#   role:       'moderator'
-# )
-# moderator.skip_confirmation!
-# moderator.save!
+moderator = User.new(
+  name:       'Moderator User',
+  email:      'moderator@example.com',
+  password:   'helloworld',
+  role:       'moderator'
+)
+moderator.skip_confirmation!
+moderator.save!
 
-# member = User.new(
-#   name:       'Member User',
-#   email:      'member@example.com',
-#   password:   'helloworld',
-#   role:       'member'
-# )
-# member.skip_confirmation!
-# member.save!
+member = User.new(
+  name:       'Member User',
+  email:      'member@example.com',
+  password:   'helloworld',
+  role:       'member'
+)
+member.skip_confirmation!
+member.save!
 
 
 puts "Seed finished"
 puts "#{User.count} users created"
 puts "#{Post.count} posts created"
+puts "#{Topic.count} topics created"
 puts "#{Comment.count} comments created"
 
 

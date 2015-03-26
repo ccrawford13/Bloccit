@@ -1,21 +1,30 @@
-<h1> <%= post.markdown_title %> </h1>
+<h1> <%= @post.markdown_title %> </h1>
   
 <div class="row">
   <div class="col-md-8">
-    <small>
-        <%= image_tag(post.user.avatar.tiny.url) if post.user.avatar? %>
-        submitted <%= time_ago_in_words(post.created_at) %> ago by
-        <%= post.user.name %>
-    </small>
-    <p><%= post.markdown_body %></p>
-  </div> 
-    <div class="col-md-12"> 
-    <%= image_tag(post.image.post_view.url) if post.image? %>
-    </div> 
-  <div class="col-md-8">
-    <% if policy(post).edit? %>
-      <%= link_to "Edit", edit_topic_post_path(topic, post), class: 'btn btn-success' %>
+    <% if policy(@post).edit? %>
+      <%= link_to "Edit Post", edit_post_path, class: 'btn btn-success' %>
     <% end %> 
-    <%= link_to "Return to Topic", topic_path(topic, post), class: 'btn btn-primary' %>
   </div>
+  <div class="col-md-8">
+    <small>
+        <%= image_tag(@post.user.avatar.tiny.url) if @post.user.avatar? %>
+        submitted <%= time_ago_in_words(@post.created_at) %> ago by
+        <%= @post.user.name %>
+    </small>
+    <h4><%= @post.markdown_body %></h4>
+  </div> 
+    <div class="col-md-6"> 
+      <%= image_tag(@post.image.post_view.url) if @post.image? %>
+    </div>
+  <div class="col-md-8">
+    <button class="btn btn-success"> 
+        <%= link_to "New Comment", :controller => :comments, :action => :new, :post_id => @comment %>
+      </button> 
+  </div>
+  <div class="col-md-8">
+    <% @post.comments.each do |comment| %>
+      <%= render comment %>
+    <% end %>
+  </div> 
 </div> 

@@ -1,8 +1,8 @@
 class PostsController < ApplicationController
 
   def show
-    locals topic: Topic.find(find_topic_params),
-           post:  Post.find(params[:id])
+    @post = Post.find(params[:id])
+    @comment = Comment.find(params[:id])
   end
 
   def new
@@ -12,7 +12,6 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @topic = Topic.find(find_topic_params)
     @post = Post.find(params[:id])
     authorize @post 
   end
@@ -25,7 +24,7 @@ class PostsController < ApplicationController
 
     if @post.save
       flash[:notice] = "Post was saved"
-      redirect_to [@topic, @post]
+      redirect_to [@post]
     else
       flash[:error] = "There was an error saving the post. Please try again."
       render :new
@@ -33,7 +32,6 @@ class PostsController < ApplicationController
   end
 
   def update
-    @topic = Topic.find(find_topic_params)
     @post = Post.find(params[:id])
     authorize @post 
 
@@ -47,10 +45,6 @@ class PostsController < ApplicationController
   end
 
   private
-
-  def locals(values)
-    render locals: values
-  end 
 
   def post_params
     params.require(:post).permit(:title, :body, :image)
