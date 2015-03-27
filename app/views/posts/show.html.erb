@@ -25,17 +25,17 @@
     </small>
     <h4><%= @post.markdown_body %></h4>
   </div> 
-    <div class="col-md-8"> 
-      <%= image_tag(@post.image.post_view.url) if @post.image? %>
-    </div>
+  <div class="col-md-8"> 
+    <%= image_tag(@post.image.post_view.url) if @post.image? %>
+  </div>
   <div class="col-md-8">
      <% @comments.each do |comment| %>
         <%= render partial: 'comments/comment', locals: {:comment => comment} %>
       <% end %>
   </div> 
   <div class="col-md-8">
-  <% if policy(@comment).new? %>
-    <%= render partial: 'comments/form', locals: { :topic => @topic, :post => @post, :comment => @comment } %>
+    <% if policy(Comment.new).new? %>
+      <%= render partial: 'comments/form', locals: { topic: @topic, post: @post, comment: @comment } %>
    <% end %>
   </div>
 </div> 
