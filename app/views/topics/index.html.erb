@@ -9,7 +9,8 @@
             <%= link_to topic.name, topic %>
           </h4>
           <small>
-            <%= topic.description %>
+            <%= topic.description %> <br/>
+            <%= pluralize(topic.posts.count, 'Post') %> 
           </small>
         </div> 
       </div> 

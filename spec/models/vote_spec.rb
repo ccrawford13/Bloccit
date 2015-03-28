@@ -4,6 +4,7 @@ include TestFactories
 describe Vote do
   describe "validations" do
     describe "value validations" do
+      
       it "it is valid when value is 1" do
         up_vote = Vote.new(value: 1)
         expect( up_vote.valid? ).to eq(true)

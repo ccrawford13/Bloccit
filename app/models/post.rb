@@ -3,6 +3,7 @@ class Post < ActiveRecord::Base
   has_many :votes
   belongs_to :user
   belongs_to :topic
+  has_many :favorites, dependent: :destroy
   mount_uploader :image, ImageUploader
   #Sets the order of posts to 'descending' by time of post
   default_scope { order('rank DESC') }
@@ -35,7 +36,6 @@ class Post < ActiveRecord::Base
   def update_rank
     age_in_days = (created_at - Time.new(1970,1,1)) * (60 * 60 * 24)
     new_rank = points + age_in_days
-
     update_attribute(:rank, new_rank)
   end
 
