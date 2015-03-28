@@ -32,24 +32,26 @@ class Post < ActiveRecord::Base
     render_as_markdown(body)
   end
 
-  def create_vote
-    user.votes.create(value: 1, post: self)
-  end
-
-  def render_as_markdown(markdown)
-    renderer = Redcarpet::Render::HTML.new(render_options = {safe_links_only: true})
-    extensions = { fenced_code_blocks: true, quote: true }
-    redcarpet = Redcarpet::Markdown.new(renderer, extensions)
-    (redcarpet.render markdown).html_safe
-  end
-
   def update_rank
     age_in_days = (created_at - Time.new(1970,1,1)) * (60 * 60 * 24)
     new_rank = points + age_in_days
 
     update_attribute(:rank, new_rank)
   end
+
+  def save_with_initial_vote
+    Post.transaction do
+      save!
+      user.votes.create(value:1, post: self)
+    end
+  end
+
   private
-
-
+  
+  def render_as_markdown(markdown)
+    renderer = Redcarpet::Render::HTML.new(render_options = {safe_links_only: true})
+    extensions = { fenced_code_blocks: true, quote: true }
+    redcarpet = Redcarpet::Markdown.new(renderer, extensions)
+    (redcarpet.render markdown).html_safe
+  end
 end
