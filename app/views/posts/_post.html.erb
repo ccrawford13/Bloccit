@@ -1,0 +1,17 @@
+<div class="media">
+  <%= render partial: 'votes/voter', locals: {post: post} %>
+  <div class="media-body">
+    <h4 class="media-heading">
+      <%= link_to post.markdown_title,[post.topic, post] %>
+    </h4> 
+    <div class="image-container">
+    <%= link_to image_tag(post.image.post_thumbnail.url), [post.topic, post] if post.image %>
+    </div>
+    <small>
+      <%= image_tag(post.user.avatar.tiny.url) if post.user.avatar %>
+      submitted <%= time_ago_in_words(post.created_at) %> ago by 
+      <%= post.user.name %><br/>
+      <%= post.comments.count %> Comments
+    </small>
+  </div> 
+</div>

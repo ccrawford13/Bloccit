@@ -14,25 +14,7 @@
     <% if policy(Post.new).create? %>
         <%= link_to "New Post", new_topic_post_path(@topic), class: 'btn btn-success' %>
       <% end %>
-    <% @topic.posts.each do |post| %>
-      <div class="media">
-        <%= render partial: 'votes/voter', locals: {post: post} %>
-        <div class="media-body">
-          <h4 class="media-heading">
-            <%= link_to post.markdown_title,[@topic, post] %>
-          </h4> 
-          <div class="image-container">
-          <%= link_to image_tag(post.image.post_thumbnail.url), [@topic, @post] if post.image %>
-          </div>
-          <small>
-            <%= image_tag(post.user.avatar.tiny.url) if post.user.avatar %>
-            submitted <%= time_ago_in_words(post.created_at) %> ago by 
-            <%= post.user.name %><br/>
-            <%= post.comments.count %> Comments
-          </small>
-        </div> 
-      </div>
-    <% end %>
+    <%= render @posts %>
   </div>  
 </div> 
 <div class="paginate">
