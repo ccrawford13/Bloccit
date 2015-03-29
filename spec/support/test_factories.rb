@@ -7,7 +7,7 @@ module TestFactories
       topic:  Topic.create(name: "Topic Name"),
       user:   authenticated_user
     }.merge(options)
-    Post.create(post_options)
+      Post.create!(post_options)
   end 
 
   def authenticated_user(options={})
@@ -26,5 +26,10 @@ module TestFactories
       user:   authenticated_user
     }.merge(options)
     Post.create(post_options)
+  end
+
+  def comment_without_email(comment)
+    allow(comment).to receive(:send_favorite_emails)
+    comment.save
   end
 end
