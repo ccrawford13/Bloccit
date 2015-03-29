@@ -28,7 +28,7 @@ describe FavoritesController do
 
       delete :destroy, { post_id: @post.id, id: favorite.id }
 
-      expect( @user.favorites.find_by_post_id(@post.id) )to be_nil
+      expect( @user.favorites.find_by_post_id(@post.id) ).to be_nil
     end
   end
 end
