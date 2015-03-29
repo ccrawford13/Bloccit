@@ -17,4 +17,14 @@ module TestFactories
     user.save
     user
   end
+
+  def another_associated_post(options={})
+    post_options = {
+      title: 'Post two',
+      body:  'Post bodies are ridiculously long',
+      topic:  Topic.create(name: "Topic Name"),
+      user:   authenticated_user
+    }.merge(options)
+    Post.create(post_options)
+  end 
 end
