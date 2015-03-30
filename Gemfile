@@ -32,6 +32,7 @@ gem 'will_paginate', '~>3.0.5'
 group :production do
   gem 'pg'
   gem 'rails_12factor'
+  gem 'rewrelic_rpm', '~>3.11.1'
 end
 
 group :development do
