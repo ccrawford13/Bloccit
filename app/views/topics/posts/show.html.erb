@@ -29,12 +29,17 @@
   <div class="col-md-8"> 
     <%= image_tag(@post.image.post_view.url) if @post.image? %>
   </div>
+  <h2>Comments</h2> 
   <div class="col-md-8">
-    <%= render partial: 'comments/comment', collection: @comments %>
+    <div class="js-comments">
+      <%= render partial: 'comments/comment', collection: @comments %>
+    </div> 
   </div> 
   <div class="col-md-8">
-    <% if policy(Comment.new).new? %>
-      <%= render partial: 'comments/form', locals: { topic: @topic, post: @post, comment: @comment } %>
-   <% end %>
+    <div class="new-comment">
+      <% if policy(@comment).new? %>
+        <%= render partial: 'comments/form', locals: { topic: @topic, post: @post, comment: @comment } %>
+      <% end %>
+    </div> 
   </div>
 </div> 
