@@ -29,8 +29,8 @@
   <div class="col-md-8"> 
     <%= image_tag(@post.image.post_view.url) if @post.image? %>
   </div>
-  <h2>Comments</h2> 
   <div class="col-md-8">
+  <h2>Comments</h2> 
     <div class="js-comments">
       <%= render partial: 'comments/comment', collection: @comments %>
     </div> 

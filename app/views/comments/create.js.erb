@@ -1,5 +1,5 @@
 <% if @comment.valid? %>
-  $('.js-comments').append("<%= escape_javascript(render(@comment)) %>");
+  $('.js-comments').append("<%= escape_javascript(render(@comment)) %>").prepend("<div class='alert alert-success'><%= flash[:notice] = "Comment was added." %></div>");
   $('.new-comment').html("<%= escape_javascript(render partial: 'comments/form', locals: { topic: @topic, post: @post, comment: @new_comment }) %>");
 <% else %>
   $('.new-comment').html("<%= escape_javascript(render partial: 'comments/form', locals: { post: @post, comment: @comment }) %>");

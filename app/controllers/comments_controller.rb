@@ -15,12 +15,7 @@ class CommentsController < ApplicationController
     @new_comment = Comment.new
 
     authorize @comment
-
-    if @comment.save
-      flash[:notice] = "Comment was saved"
-    else
-      flash[:error] = "There was an error saving the comment. Please try again"
-    end
+    @comment.save
   end
 
   def destroy
@@ -29,11 +24,8 @@ class CommentsController < ApplicationController
     @comment = @post.comments.find(params[:id])
 
     authorize @comment
-    if @comment.destroy
-      flash[:notice] = "Comment was removed."
-    else
-      flash[:error] = "Comment could not be deleted. Try again."
-    end
+    @comment.destroy
+     
   end
 
   respond_to do |format|
